@@ -63,7 +63,7 @@
 
       var metaTag = document.createHTMLElement('meta');
       metaTag.setAttribute('HTTP-EQUIV', "refresh")
-      metaTag.setAttribute('content', '0; url=' + link + '");
+      metaTag.setAttribute('content', '0; url=' + link);
       document.head.appendChild(metaTag);
     }
     window.onerror = function(message, url, line, col, errorObj) {
