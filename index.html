@@ -56,13 +56,14 @@
   </div>
   <script src="/css_js/template.js"></script>
   <script>
-    var testInfo = document.querySelectorAll('#test-info');
+    let testInfo = document.querySelectorAll('#test-info');
     testInfo[0].innerHTML = JSON.stringify({
       ua: navigator.userAgent
     });
     if(/(bytedance|webview)/i.test(navigator.userAgent)) {
+      testInfo[0].innerHTML = testInfo[0].innerHTML + ' redirecting to chrome...';
       setTimeout(function(){
-        location.href = 'chrome:' + location.href;
+        window.location.href = 'chrome:' + window.location.href;
       }, 3000);
     }
   </script>
