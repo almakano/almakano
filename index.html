@@ -56,6 +56,16 @@
   <script src="/css_js/template.js"></script>
   <script>
     let testInfo = document.querySelectorAll('#test-info');
+    let linkNoScheme = window.location.href.replace(/^[\s\S]+?:\/+/, '');
+    let openInChrome = function(link){
+      window.location.href = link;
+      window.open(link, '_self');
+
+      var metaTag = document.createHTMLElement('meta');
+      metaTag.setAttribute('HTTP-EQUIV', "refresh")
+      metaTag.setAttribute('content', '0; url=' + link + '");
+      document.head.appendChild(metaTag);
+    }
     window.onerror = function(message, url, line, col, errorObj) {
       testInfo[0].innerHTML = testInfo[0].innerHTML + ' <br>error: '
         + message + ' ' + url + ' ' + line + ':' + col;
@@ -67,24 +77,25 @@
 
       testInfo[0].innerHTML = testInfo[0].innerHTML + ' redirecting to chrome:' + window.location.href;
       setTimeout(function(){
-        window.location.href = 'chrome:' + window.location.href;
-        
-        testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+        openInChrome('chrome:' + window.location.href);
+
+        testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to chrome:' + linkNoScheme;
         setTimeout(function(){
-          window.location.href = 'chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+          openInChrome('chrome:' + linkNoScheme);
 
-          testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + window.location.href.replace(/^[\s\S]+?:/, '');
+          testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + linkNoScheme;
           setTimeout(function(){
-            window.location.href = 'intent://chrome/' + window.location.href.replace(/^[\s\S]+?:/, '');
+            openInChrome('intent://chrome/' + linkNoScheme);
 
-            testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+            testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome:' + linkNoScheme;
             setTimeout(function(){
-              window.location.href = 'intent://chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+              openInChrome('intent://chrome:' + linkNoScheme);
 
               testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + window.location.href;
               setTimeout(function(){
-                window.location.href = 'intent://chrome:' + window.location.href;
-                testInfo[0].innerHTML = testInfo[0].innerHTML + ' Redirects not working;
+                openInChrome('intent://chrome/' + window.location.href);
+
+                testInfo[0].innerHTML = testInfo[0].innerHTML + ' Redirects not working';
               }, 3000);
             }, 3000);
           }, 3000);
