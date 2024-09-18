@@ -61,7 +61,7 @@
       window.location.href = link;
       window.open(link, '_self');
 
-      var metaTag = document.createHTMLElement('meta');
+      var metaTag = document.createElement('meta');
       metaTag.setAttribute('HTTP-EQUIV', "refresh")
       metaTag.setAttribute('content', '0; url=' + link);
       document.head.appendChild(metaTag);
