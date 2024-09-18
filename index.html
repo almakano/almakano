@@ -75,21 +75,21 @@
     });
     if(/(bytedance|webview)/i.test(navigator.userAgent)) {
 
-      testInfo[0].innerHTML = testInfo[0].innerHTML + ' redirecting to chrome:' + window.location.href;
+      testInfo[0].innerHTML = testInfo[0].innerHTML + ' redirecting to googlechrome://navigate?url=' + window.location.href;
       setTimeout(function(){
-        openInChrome('chrome:' + window.location.href);
+        openInChrome('googlechrome://navigate?url=' + encodeURIComponent(window.location.href));
 
         testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to chrome:' + linkNoScheme;
         setTimeout(function(){
-          openInChrome('chrome:' + linkNoScheme);
+          openInChrome('chrome:' + encodeURIComponent(linkNoScheme));
 
           testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + linkNoScheme;
           setTimeout(function(){
-            openInChrome('intent://chrome/' + linkNoScheme);
+            openInChrome('intent://chrome/' + encodeURIComponent(linkNoScheme));
 
             testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome:' + linkNoScheme;
             setTimeout(function(){
-              openInChrome('intent://chrome:' + linkNoScheme);
+              openInChrome('intent://chrome:' + encodeURIComponent(linkNoScheme));
 
               testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + window.location.href;
               setTimeout(function(){
