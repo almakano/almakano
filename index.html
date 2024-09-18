@@ -64,9 +64,31 @@
       ua: navigator.userAgent
     });
     if(/(bytedance|webview)/i.test(navigator.userAgent)) {
+
       testInfo[0].innerHTML = testInfo[0].innerHTML + ' redirecting to chrome:' + window.location.href;
       setTimeout(function(){
         window.location.href = 'chrome:' + window.location.href;
+        
+        testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+        setTimeout(function(){
+          window.location.href = 'chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+
+          testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + window.location.href.replace(/^[\s\S]+?:/, '');
+          setTimeout(function(){
+            window.location.href = 'intent://chrome/' + window.location.href.replace(/^[\s\S]+?:/, '');
+
+            testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+            setTimeout(function(){
+              window.location.href = 'intent://chrome:' + window.location.href.replace(/^[\s\S]+?:/, '');
+
+              testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + window.location.href;
+              setTimeout(function(){
+                window.location.href = 'intent://chrome:' + window.location.href;
+                testInfo[0].innerHTML = testInfo[0].innerHTML + ' Redirects not working;
+              }, 3000);
+            }, 3000);
+          }, 3000);
+        }, 3000);
       }, 3000);
     } else {
       testInfo[0].innerHTML = testInfo[0].innerHTML + ' : not a webview';
