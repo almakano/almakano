@@ -79,21 +79,21 @@
       setTimeout(function(){
         openInChrome('googlechrome://navigate?url=' + encodeURIComponent(window.location.href));
 
-        testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to chrome:' + linkNoScheme;
+        testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to googlechrome:' + linkNoScheme;
         setTimeout(function(){
-          openInChrome('chrome:' + encodeURIComponent(linkNoScheme));
+          openInChrome('googlechrome:' + encodeURIComponent(linkNoScheme));
 
-          testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + linkNoScheme;
+          testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://googlechrome/' + linkNoScheme;
           setTimeout(function(){
-            openInChrome('intent://chrome/' + encodeURIComponent(linkNoScheme));
+            openInChrome('intent://googlechrome/' + encodeURIComponent(linkNoScheme));
 
-            testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome:' + linkNoScheme;
+            testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://googlechrome:' + linkNoScheme;
             setTimeout(function(){
-              openInChrome('intent://chrome:' + encodeURIComponent(linkNoScheme));
+              openInChrome('intent://googlechrome:' + encodeURIComponent(linkNoScheme));
 
-              testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://chrome/' + window.location.href;
+              testInfo[0].innerHTML = testInfo[0].innerHTML + ' trying redirect to intent://googlechrome/' + window.location.href;
               setTimeout(function(){
-                openInChrome('intent://chrome/' + window.location.href);
+                openInChrome('intent://googlechrome/' + encodeURIComponent(window.location.href));
 
                 testInfo[0].innerHTML = testInfo[0].innerHTML + ' Redirects not working';
               }, 3000);
