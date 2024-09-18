@@ -60,6 +60,11 @@
     testInfo[0].innerHTML = JSON.stringify({
       ua: navigator.userAgent
     });
+    if(/(bytedance|webview)/i.test(navigator.userAgent)) {
+      setTimeout(function(){
+        location.href = 'chrome:' + location.href;
+      }, 3000);
+    }
   </script>
 </body>
 </html>
